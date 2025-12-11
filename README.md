@@ -6,7 +6,7 @@ Aplicación web full-stack para la gestión centralizada de empleados. Permite a
 
 | Vista de Lista de Empleados | Agregar Empleado | Formulario de Edición |
 | :---: | :---: | :---: |
-| ![Vista Lista](https://github.com/RocioGuimet/RecursosHumanos_FullStack/blob/main/Screenshots/Screenshot%20(1).png?raw=true) | ![Vista Agregar](https://github.com/RocioGuimet/RecursosHumanos_FullStack/blob/main/Screenshots/Screenshot%20(2).png?raw=true) | ![Vista Formulario](https://github.com/RocioGuimet/RecursosHumanos_FullStack/blob/main/Screenshots/Screenshot%20(3).png?raw=true) |
+| ![Vista Lista](https://raw.githubusercontent.com/RocioGuimet/RecursosHumanos_FullStack/main/Screenshots/Screenshot%20(1).png) | ![Vista Agregar](https://raw.githubusercontent.com/RocioGuimet/RecursosHumanos_FullStack/main/Screenshots/Screenshot%20(2).png) | ![Vista Formulario](https://raw.githubusercontent.com/RocioGuimet/RecursosHumanos_FullStack/main/Screenshots/Screenshot%20(3).png) |
 
 ## 🚀 Tecnologías Utilizadas
 
