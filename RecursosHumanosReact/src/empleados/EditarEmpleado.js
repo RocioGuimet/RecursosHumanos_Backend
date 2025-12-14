@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 export default function EditarEmpleado() {
@@ -18,15 +18,20 @@ export default function EditarEmpleado() {
 
     const {nombre, departamento, sueldo} = empleado
 
+    const cargarEmpleado = useCallback(async () => {
+        try {
+            const resultado = await axios.get(`${urlBase}/${id}`)
+            setEmpleado(resultado.data);
+        } catch (error) {
+            console.error("Error cargando empleado:", error);
+            alert("❌ Error al cargar los datos del empleado");
+        }
+    }, [id, urlBase]); // Dependencias: id y urlBase
+
     useEffect(()=>{
         cargarEmpleado();
 
-    },[])
-    
-    const cargarEmpleado = async () => {
-        const resultado = await axios.get(`${urlBase}/${id}`)
-        setEmpleado(resultado.data); 
-    }
+    },[cargarEmpleado])
 
     const onInputChange = (e) => {
         //Spread Operator ... (expandir atributos)
@@ -35,9 +40,15 @@ export default function EditarEmpleado() {
     //Petición al Backend
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.put(`${urlBase}/${id}`, empleado);
-        //Redirigimos a la página de inicio
-        Navegacion('/');
+        try {
+            await axios.put(`${urlBase}/${id}`, empleado);
+            alert("Empleado actualizado correctamente");
+            //Redirigimos a la página de inicio
+            Navegacion('/');
+        } catch (error) {
+            console.error("Error al actualizar empleado: " + error);
+            alert("Error al actualizar empleado");
+        }
     }
 
   return (

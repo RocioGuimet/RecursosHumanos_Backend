@@ -21,8 +21,19 @@ export default function ListadoEmpleados() {
     }
 
     const eliminarEmpleado = async (id) => {
-        await axios.delete(`${urlBase}/${id}`);
-        cargarEmpleados();
+        //Confirmar
+        const confirmar = window.confirm("¿Estás seguro de que deseas eliminar este empleado?");
+        if (!confirmar) {
+            return; // Si el usuario cancela, no hacer nada
+  }
+        try{
+            await axios.delete(`${urlBase}/${id}`);
+            cargarEmpleados();
+            alert("Empleado eliminado correctamente");
+        } catch (error) {
+            console.error("Error eliminando empleado: "+ error);
+            alert("Error al eliminar empleado");
+        }
     }
 
   return (

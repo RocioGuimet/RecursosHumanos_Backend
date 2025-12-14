@@ -21,9 +21,15 @@ export default function AgregarEmpleado() {
     const onSubmit = async (e) => {
         e.preventDefault();
         const urlBase = "http://localhost:8080/rh-app/empleados";
-        await axios.post(urlBase, empleado);
-        //Redirigimos a la página de inicio
-        Navegacion('/');
+        try{
+            await axios.post(urlBase, empleado);
+            alert("Empleado creado correctamente");
+            //Redirigimos a la página de inicio
+            Navegacion('/');
+        } catch (error) {
+            console.error("Error creando empleado: "+ error);
+            alert("Error al crear empleado");
+        }
     }
 
   return (
