@@ -3,11 +3,20 @@ package archivo.rh.controller;
 import archivo.rh.excepcion.RecursoNoEncontradoExcepcion;
 import archivo.rh.model.Empleado;
 import archivo.rh.service.EmpleadoService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,15 +35,16 @@ public class EmpleadoController {
 //http://localhost:8080/rh-app/empleados
     @GetMapping("/empleados")
     public List<Empleado> obtenerEmpleados(){
-        var empleados = empleadoService.listarEmpleados();
+        List<Empleado> empleados = empleadoService.listarEmpleados();
         empleados.forEach((empleado -> logger.info(empleado.toString())));
         return empleados;
     }
 
     @PostMapping("/empleados")
-    public Empleado agregarEmpleado(@RequestBody Empleado empleado){
+    public ResponseEntity<Empleado> agregarEmpleado(@Valid @RequestBody Empleado empleado){
         logger.info("Empleado a agregar: " + empleado);
-        return empleadoService.guardarEmpleado(empleado);
+        Empleado nuevoEmpleado = empleadoService.guardarEmpleado(empleado);
+        return ResponseEntity.ok(nuevoEmpleado);
     }
 
     @GetMapping("/empleados/{id}")
