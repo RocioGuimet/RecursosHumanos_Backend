@@ -40,6 +40,7 @@ La aplicación inicia en http://localhost:8080. Usa estos endpoints:
 
 | Método |Endpoint | Descripción |
 | GET | /rh-app/empleados | Lista todos los empleados |
+|  | |  |
 | GET | /rh-app/empleados/{id} | Obtiene un empleado por ID |
 | POST | /rh-app/empleados | Crea un nuevo empleado |
 | PUT | /rh-app/empleados/{id} | Actualiza un empleado existente |
